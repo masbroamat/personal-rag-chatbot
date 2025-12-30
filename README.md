@@ -52,6 +52,10 @@ ALTER USER rag_user QUOTA UNLIMITED ON USERS;
 -- NOTE: You do not need to create tables manually. 
 -- The Spring Boot application (AiConfig.java) will automatically 
 -- create the necessary tables for Vector Store and Chat Memory on startup.
+CREATE TABLE chat_memory (
+    chat_id VARCHAR2(100) PRIMARY KEY,
+    messages CLOB CHECK (messages IS JSON) -- Requires Oracle 23ai
+);
 
 ```
 
