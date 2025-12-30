@@ -1,0 +1,20 @@
+<div class="chat-area">
+  <div class="messages-list" #scrollContainer>
+    <div *ngFor="let msg of messages" 
+         [class.user-message]="msg.isUser" 
+         [class.ai-message]="!msg.isUser"
+         class="message-bubble">
+      <markdown [data]="msg.text"></markdown>
+    </div>
+
+    <div *ngIf="isLoading" class="message-bubble ai-message loading-bubble">
+      <div class="dot-flashing"></div>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <label class="file-btn">📎<input type="file" (change)="onFileSelected($event)" style="display: none;"></label>
+    <input [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a message..." type="text">
+    <button (click)="sendMessage()" [disabled]="!userInput">Send</button>
+  </div>
+</div>

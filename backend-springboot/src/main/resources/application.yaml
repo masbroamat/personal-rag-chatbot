@@ -1,0 +1,33 @@
+spring:
+  application:
+  # --- DATABASE CONFIGURATION (Oracle) ---
+  # We configure this manually in Java code for LangChain4j,
+  # but keep standard datasource here just in case.
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/FREEPDB1
+    username: rag_user
+    password: RagPass123
+    driver-class-name: oracle.jdbc.OracleDriver
+  ai:
+    ollama:
+      chat:
+        model: dolphin-llama3
+#        model: CognitiveComputations/dolphin-llama3.1
+#        model: qwen2.5:32b
+        options:
+          num-ctx: 8192
+#        num-ctx: 131072 #(128k) #32768 #(32k) [32*1024 = 32768]
+      base-url: http://localhost:11434
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+langchain4j:
+  ollama:
+    chat-model:
+      base-url: http://localhost:11434
+      model-name: dolphin-llama3
+      temperature: 0.0      # 0 = Precise (for Docs), 1 = Creative
+    embedding-model:
+      base-url: http://localhost:11434
+      model-name: nomic-embed-text

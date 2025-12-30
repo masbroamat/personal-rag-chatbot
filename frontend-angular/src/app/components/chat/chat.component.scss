@@ -1,0 +1,151 @@
+:host {
+  display: block;
+  flex: 1;
+  height: 100%;
+  min-width: 0;
+}
+
+.chat-area {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+
+.messages-list {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #f4f4f9;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message-bubble {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  line-height: 1.4;
+}
+
+.message-bubble ul, .message-bubble ol {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.message-bubble li {
+  margin-bottom: 5px;
+}
+
+.message-bubble strong {
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.user-message {
+  align-self: flex-end;
+  background: #343541;
+  color: white;
+  border-bottom-right-radius: 2px;
+}
+
+.user-message strong {
+  color: white;
+}
+
+.ai-message {
+  align-self: flex-start;
+  background: #e9ecef;
+  color: #333;
+  border-bottom-left-radius: 2px;
+}
+
+.input-area {
+  padding: 15px;
+  background: white;
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid #ddd;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+}
+
+button {
+  padding: 10px 20px;
+  background: #202123;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    background: #a2a2a2ff;
+  }
+}
+
+.file-btn {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.loading-bubble {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.dot-flashing {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: #9880ff;
+  color: #9880ff;
+  animation: dot-flashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+
+.dot-flashing::before, .dot-flashing::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+
+.dot-flashing::before {
+  left: -12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: #9880ff;
+  color: #9880ff;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 0s;
+}
+
+.dot-flashing::after {
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 5px;
+  background-color: #9880ff;
+  color: #9880ff;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 1s;
+}
+
+@keyframes dot-flashing {
+  0% { background-color: #9880ff; }
+  50%, 100% { background-color: #ebe6ff; }
+}
