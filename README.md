@@ -49,9 +49,9 @@ GRANT DB_DEVELOPER_ROLE TO rag_user;
 -- 3. Grant Unlimited Quota
 ALTER USER rag_user QUOTA UNLIMITED ON USERS;
 
--- NOTE: You do not need to create tables manually. 
--- The Spring Boot application (AiConfig.java) will automatically 
--- create the necessary tables for Vector Store and Chat Memory on startup.
+-- 4. Disconnect current login session and reconnect with rag_user as username and RagPass123 as password
+
+-- 5. Create chat_memory table
 CREATE TABLE chat_memory (
     chat_id VARCHAR2(100) PRIMARY KEY,
     messages CLOB CHECK (messages IS JSON) -- Requires Oracle 23ai
@@ -66,7 +66,7 @@ CREATE TABLE chat_memory (
 Open your terminal and pull the models you intend to use.
 * **Option A: Uncensored & Fast (Default)**
 ```bash
-ollama pull dolphin-llama3
+ollama pull CognitiveComputations/dolphin-llama3.1
 
 ```
 
@@ -120,7 +120,7 @@ spring:
       base-url: http://localhost:11434
       chat:
         # CHANGE MODEL HERE
-        model: dolphin-llama3   
+        model: CognitiveComputations/dolphin-llama3.1   
         # model: qwen2.5:32b
         
         options:
@@ -140,7 +140,7 @@ langchain4j:
   ollama:
     chat-model:
       base-url: http://localhost:11434
-      model-name: dolphin-llama3
+      model-name: CognitiveComputations/dolphin-llama3.1
       temperature: 0.0      # 0.0 = Precise (Docs), 1.0 = Creative
     embedding-model:
       base-url: http://localhost:11434
